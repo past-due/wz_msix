@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
+  xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest"
+  xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
+  xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3"
+  xmlns:uap5="http://schemas.microsoft.com/appx/manifest/uap/windows10/5"
+  xmlns:desktop="http://schemas.microsoft.com/appx/manifest/desktop/windows10"
+  xmlns:desktop2="http://schemas.microsoft.com/appx/manifest/desktop/windows10/2"
+  xmlns:desktop4="http://schemas.microsoft.com/appx/manifest/desktop/windows10/4"
+  xmlns:desktop6="http://schemas.microsoft.com/appx/manifest/desktop/windows10/6"
+  xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities"
+  IgnorableNamespaces="mp uap uap3 uap5 desktop desktop2 desktop4 desktop6 rescap">
+
+  <Identity Name="@IDENTITY_NAME@" Publisher="@IDENTITY_PUBLISHER@" Version="1.0.0.0" ProcessorArchitecture="neutral"/>
+
+  <Properties>
+    <DisplayName>Warzone 2100</DisplayName>
+    <PublisherDisplayName>WZ2100 Project</PublisherDisplayName>
+    <Logo>_Assets\StoreLogo.png</Logo>
+  </Properties>
+
+  <Dependencies>
+    <TargetDeviceFamily Name="Windows.Desktop" MinVersion="10.0.17763.0" MaxVersionTested="10.0.19041.0" />
+  </Dependencies>
+
+  <Resources>
+    <Resource Language="en-us"/>
+  </Resources>
+
+  <Applications>
+    <Application Id="Warzone2100" Executable="bin\warzone2100.exe" EntryPoint="Windows.FullTrustApplication">
+      <uap:VisualElements
+        AppListEntry="default"
+        BackgroundColor="transparent"
+        Description="Warzone 2100"
+        DisplayName="Warzone 2100"
+        Square150x150Logo="_Assets\Square150x150Logo.png"
+        Square44x44Logo="_Assets\Square44x44Logo.png">
+        <uap:DefaultTile
+          ShortName="Warzone 2100"
+          Square310x310Logo="_Assets\Square310x310Logo.png"
+          Wide310x150Logo="_Assets\Wide310x150Logo.png"
+          Square71x71Logo="_Assets\Square71x71Logo.png">
+          <uap:ShowNameOnTiles>
+            <uap:ShowOn Tile="square150x150Logo" />
+            <uap:ShowOn Tile="wide310x150Logo" />
+            <uap:ShowOn Tile="square310x310Logo" />
+          </uap:ShowNameOnTiles>
+        </uap:DefaultTile>
+      </uap:VisualElements>
+      <Extensions>
+        <uap3:Extension Category="windows.appExecutionAlias" Executable="bin\warzone2100.exe" EntryPoint="Windows.FullTrustApplication">
+          <uap3:AppExecutionAlias>
+            <desktop:ExecutionAlias Alias="warzone2100.exe" />
+          </uap3:AppExecutionAlias>
+        </uap3:Extension>
+      </Extensions>
+    </Application>
+  </Applications>
+
+  <Capabilities>
+    <rescap:Capability Name="runFullTrust" />
+  </Capabilities>
+
+  <Extensions>
+    <!-- See: https://docs.microsoft.com/en-us/windows/uwp/porting/desktop-to-uwp-extensions -->
+    <desktop2:Extension Category="windows.firewallRules">
+      <desktop2:FirewallRules Executable="bin\warzone2100.exe">
+        <!-- Allow incoming TCP & UDP traffic for hosting Warzone 2100 games (starting at port 2100, the default port). -->
+        <desktop2:Rule Direction="in" IPProtocol="TCP" LocalPortMin="2100" LocalPortMax="65535" Profile="all" />
+        <desktop2:Rule Direction="in" IPProtocol="UDP" LocalPortMin="2100" LocalPortMax="65535" Profile="all" />
+        <!-- Allow all outgoing TCP and UDP traffic. -->
+        <desktop2:Rule Direction="out" IPProtocol="TCP" Profile="all" />
+        <desktop2:Rule Direction="out" IPProtocol="UDP" Profile="all" />
+      </desktop2:FirewallRules>
+    </desktop2:Extension>
+  </Extensions>
+</Package>

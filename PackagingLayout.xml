@@ -1,0 +1,27 @@
+<PackagingLayout xmlns="http://schemas.microsoft.com/appx/makeappx/2017">
+  <PackageFamily ID="Warzone2100" FlatBundle="false" ManifestPath="AppxManifest.xml" ResourceManager="false">
+    <!-- x64 code package-->
+    <Package ID="x64" ProcessorArchitecture="x64">
+      <Files>
+        <File DestinationPath="bin\*" SourcePath="files\bin\x64\*" />
+        <File ExcludePath="files\bin\x64\.portable" />
+        <File DestinationPath="_Assets\*.png" SourcePath="resources\_Assets\*.png" />
+        <File DestinationPath="resources.pri" SourcePath="resources.pri" />
+      </Files>
+    </Package>
+    <!-- Data asset package -->
+    <AssetPackage ID="Data" AllowExecution="false">
+      <Files>
+        <File DestinationPath="data\**" SourcePath="files\data\**" />
+        <File DestinationPath="doc\**" SourcePath="files\doc\**" />
+        <File DestinationPath="locale\**" SourcePath="files\locale\**" />
+      </Files>
+    </AssetPackage>
+    <!-- Videos asset package -->
+    <AssetPackage ID="Videos" AllowExecution="false">
+      <Files>
+        <File DestinationPath="data\sequences.wz" SourcePath="sequences\sequences.wz" />
+      </Files>
+    </AssetPackage>
+  </PackageFamily>
+</PackagingLayout>
