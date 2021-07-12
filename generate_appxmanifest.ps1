@@ -5,7 +5,13 @@ Param
   $IdentityName,
   [Parameter(Mandatory=$true, ValueFromPipelineByPropertyName=$true)]
   [string]
-  $IdentityPublisher
+  $IdentityPublisher,
+  [Parameter(Mandatory=$true, ValueFromPipelineByPropertyName=$true)]
+  [string]
+  $PackageDisplayName,
+  [Parameter(Mandatory=$true, ValueFromPipelineByPropertyName=$true)]
+  [string]
+  $PackagePublisherDisplayName
 )
 
 ############################
@@ -51,6 +57,12 @@ $appxmanifest_template_content = $appxmanifest_template_content -replace '@IDENT
 
 # Replace the identity publisher with desired value
 $appxmanifest_template_content = $appxmanifest_template_content -replace '@IDENTITY_PUBLISHER@', "$IdentityPublisher"
+
+# Replace the package displayname with desired value
+$appxmanifest_template_content = $appxmanifest_template_content -replace '@PACKAGE_DISPLAYNAME@', "$PackageDisplayName"
+
+# Replace the package publisher displayname with desired value
+$appxmanifest_template_content = $appxmanifest_template_content -replace '@PACKAGE_PUBLISHERDISPLAYNAME@', "$PackagePublisherDisplayName"
 
 $appxmanifest_template_content | Set-Content "$appxmanifest_output_path"
 
