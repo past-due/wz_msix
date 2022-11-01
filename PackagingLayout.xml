@@ -9,6 +9,15 @@
         <File DestinationPath="resources.pri" SourcePath="resources.pri" />
       </Files>
     </Package>
+    <!-- ARM64 code package-->
+    <Package ID="arm64" ProcessorArchitecture="arm64">
+      <Files>
+        <File DestinationPath="bin\*" SourcePath="files\bin\arm64\*" />
+        <File ExcludePath="files\bin\arm64\.portable" />
+        <File DestinationPath="_Assets\*.png" SourcePath="resources\_Assets\*.png" />
+        <File DestinationPath="resources.pri" SourcePath="resources.pri" />
+      </Files>
+    </Package>
     <!-- Data asset package -->
     <AssetPackage ID="Data" AllowExecution="false">
       <Files>
